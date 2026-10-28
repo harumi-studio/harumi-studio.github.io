@@ -1,0 +1,81 @@
+/* Harumi Studio — shared styles for every page */
+:root {
+  --bg: #fbfaf8;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --muted: #5f6368;
+  --line: #e4e1dc;
+  --accent: #2f6fde;
+  --accent-text: #ffffff;
+  --radius: 14px;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111214;
+    --surface: #1b1c1f;
+    --text: #f2f2f4;
+    --muted: #a5a8ae;
+    --line: #2d2f33;
+    --accent: #6ea0ff;
+    --accent-text: #0b1220;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.75 -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Segoe UI", "Noto Sans JP", sans-serif;
+}
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+
+header.site {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 0;
+}
+header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+header.site .brand { font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: .01em; }
+
+.langs { display: flex; gap: 6px; }
+.langs button {
+  font: inherit; font-size: 14px; line-height: 1;
+  padding: 8px 12px; min-height: 36px;
+  border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); color: var(--text); cursor: pointer;
+}
+.langs button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+
+main { padding: 28px 0 48px; }
+h1 { font-size: 1.6rem; line-height: 1.35; margin: 0 0 .4em; }
+h2 { font-size: 1.1rem; margin: 1.8em 0 .4em; }
+p, ul, ol { margin: 0 0 1em; }
+ul, ol { padding-left: 1.3em; }
+.meta { color: var(--muted); font-size: .9rem; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 0 0 12px;
+}
+.card h2 { margin-top: 0; }
+.apps { list-style: none; padding: 0; }
+.apps .name { font-weight: 700; }
+.links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 6px 0 0; }
+
+/* Both languages are in each page. Without JavaScript both stay visible;
+   lang.js shows only one and the buttons switch it. */
+html[data-lang="ja"] .bi:lang(en) { display: none; }
+html[data-lang="en"] .bi:lang(ja) { display: none; }
+.bi + .bi { margin-top: 40px; }
+html[data-lang] .bi + .bi { margin-top: 0; }
+
+footer.site { border-top: 1px solid var(--line); padding: 18px 0 32px; color: var(--muted); font-size: .9rem; }
+footer.site .wrap { display: flex; flex-wrap: wrap; gap: 8px 18px; }
